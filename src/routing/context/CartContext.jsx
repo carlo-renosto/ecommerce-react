@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { db } from '../../config/config'
-import { collection, doc, updateDoc } from "firebase/firestore";
+import { collection, doc, addDoc, updateDoc } from "firebase/firestore";
 
 const cartContext = createContext();
 
@@ -29,11 +29,6 @@ const CartProvider = ({children}) => {
     }
 
     const addCartItem = (item, quantity) => {
-        const itemCollection = collection(db, "products");
-        const itemRef = doc(itemCollection, item.id);
-        item.stock -= quantity;
-        updateDoc(itemRef, item);
-
         const index = cart.findIndex(itm => itm.id === item.id);
         if(index !== -1) {
             cart[index].quantity += quantity;
@@ -45,12 +40,34 @@ const CartProvider = ({children}) => {
         setCartItemsTotal(cartItemsTotal + quantity);
     }
 
-    const buyCart = () => {
+    const deleteCartItem = (item) => {
+        setCart(cart.filter(itm => itm.id !== item.id));
+        setCartItemsTotal(cartItemsTotal - item.quantity);
+    }
+
+    const clearCart = () => {
         setCart([]);
         setCartItemsTotal(0);
     }
 
-    const contextValue = {getCart, getCartItemsTotal, getCartPriceTotal, addCartItem, buyCart};
+    const buyCart = async(order) => {
+        const orderRef = await addDoc(collection(db, "orders"), order);
+
+        const itemCollection = collection(db, "products");
+        cart.forEach((item) => {
+            item.stock -= item.quantity;
+
+            const itemRef = doc(itemCollection, item.id);
+            updateDoc(itemRef, item);
+        });
+
+        setCart([]);
+        setCartItemsTotal(0);
+
+        return orderRef.id;
+    }
+
+    const contextValue = {getCart, getCartItemsTotal, getCartPriceTotal, addCartItem, deleteCartItem, clearCart, buyCart};
     return <Provider value={contextValue}>{children}</Provider>
 }
 

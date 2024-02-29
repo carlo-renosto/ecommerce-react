@@ -5,9 +5,13 @@ import { db } from '../../config/config'
 import { collection, addDoc } from "firebase/firestore";
 
 const CartContainer = () => {
-    const { getCart, getCartPriceTotal, buyCart } = useCartContext();
+    const { getCart, getCartPriceTotal, deleteCartItem, clearCart, buyCart } = useCartContext();
     const cart = getCart();
     const total = getCartPriceTotal();
+
+    const onClear = () => {
+        clearCart();
+    }
 
     const onBuy = async() => {
         const order = {
@@ -20,22 +24,25 @@ const CartContainer = () => {
             total: total
         }
         
-        const orderRef = await addDoc(collection(db, "orders"), order);
-        buyCart();
+        const orderId =  await buyCart(order);
 
-        swal({title: "Compra exitosa", text: `ID orden: ${orderRef.id} \n Precio total: $${total}`, icon: "success"});
+        swal({title: "Compra exitosa", text: `ID orden: ${orderId} \n Precio total: $${total}`, icon: "success"});
     }
 
     return cart.length > 0 ? (
         <div className={styles.cart}>
             <h1 className= {styles.item_center}>Carrito</h1>
+
+            <div className={styles.item_center}>
+                <button onClick={() => onClear()}>Vaciar</button>
+            </div>
             
-            <CartItem cart={cart}/>
+            <CartItem cart={cart} deleteCartItem={deleteCartItem}/>
 
             <h3 style={{marginLeft: "5px"}}>Total: ${total}</h3>
 
             <div className={styles.item_center}>
-                <button onClick={onBuy}>Comprar</button>
+                <button onClick={() => onBuy()}>Comprar</button>
             </div>
         </div>
     ) :

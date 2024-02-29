@@ -1,7 +1,11 @@
 import styles from "./CartItem.module.scss"
 import { Link } from "react-router-dom"
 
-const CartItem = ({cart}) => {
+const CartItem = ({cart, deleteCartItem}) => {
+    const onDeleteProduct = (id, quantity) => {
+        deleteCartItem({id, quantity});
+    }
+
     return (
         <div>
             {cart.map(({id, title, image, price, quantity}, index) => (
@@ -16,6 +20,7 @@ const CartItem = ({cart}) => {
                         <li>{quantity} unidades</li>
                         <li>Subtotal: ${price * quantity}</li>
                     </ul>
+                    <Link to="/cart"><button onClick={() => onDeleteProduct(id, quantity)}>Eliminar</button></Link>
                 </div>
             ))}
         </div>
