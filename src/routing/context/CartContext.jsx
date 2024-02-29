@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react"
+import { db } from '../../config/config'
+import { collection, doc, updateDoc } from "firebase/firestore";
 
 const cartContext = createContext();
 
@@ -27,6 +29,11 @@ const CartProvider = ({children}) => {
     }
 
     const addCartItem = (item, quantity) => {
+        const itemCollection = collection(db, "products")
+        const itemRef = doc(itemCollection, item.id);
+        item.stock -= quantity;
+        updateDoc(itemRef, item);
+
         const index = cart.findIndex(itm => itm.id === item.id);
         if(index !== -1) {
             cart[index].quantity += quantity;
