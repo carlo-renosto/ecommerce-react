@@ -1,6 +1,7 @@
 import { useState } from "react"
 import swal from "sweetalert"
 import styles from "./ItemDetail.module.scss"
+import { Link } from "react-router-dom"
 import ItemCount from "../ItemCount/ItemCount"
 import { useCartContext } from "../../routing/context/CartContext"
 
@@ -30,7 +31,7 @@ const ItemDetail = ({item}) => {
                 <p className={styles.item_center}>${price}</p>
                 <p className={styles.item_center}>Stock: {stock} unidades</p>
                 {itemCountVisible && <ItemCount onAdd={onAdd}/>}
-                {!itemCountVisible && <p className={styles.item_center}>Producto añadido al carrito</p>}
+                {!itemCountVisible && <Link to="/cart"><div className={styles.item_center}><button>Ir al carrito</button></div></Link>}
             </div>
         </div>
     )
