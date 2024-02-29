@@ -1,4 +1,4 @@
-// App deploy: https://ecommerce-react-five-gamma.vercel.app/products
+// App deploy: https://ecommerce-react-five-gamma.vercel.app
 
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
