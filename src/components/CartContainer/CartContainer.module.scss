@@ -1,0 +1,14 @@
+
+.cart {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 50%;
+    max-width: 450px;
+    border: 1px solid #ccc;
+}
+
+.item_center {
+    text-align: center;
+}

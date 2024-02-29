@@ -1,0 +1,27 @@
+
+.navbar {
+  display: flex;
+  background-color: #00C5FF;
+  height: fit-content;
+  overflow: hidden;
+  position: relative;
+  color: white;
+}
+  
+.links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.link {
+  text-transform: capitalize;
+}
+
+.link_decoration {
+  text-decoration: none;
+  color: inherit;
+}
+  
+  

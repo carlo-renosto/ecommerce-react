@@ -1,0 +1,25 @@
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 50%;
+    max-width: 250px;
+    border: 1px solid #ccc;
+}
+
+.item_center {
+  text-align: center;
+}
+
+.item_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  min-width: 100px;
+  max-width: 100px;
+  max-height: 150px;
+}

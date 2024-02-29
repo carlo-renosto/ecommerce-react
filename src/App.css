@@ -1,0 +1,17 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#nav-bar {
+    background-color: #00C5FF;
+    height: fit-content;
+    overflow: hidden;
+    position: relative;
+}
+
+#nav-logo {
+    width: 200px;
+}
+
