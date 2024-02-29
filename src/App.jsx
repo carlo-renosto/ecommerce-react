@@ -1,3 +1,5 @@
+// App deploy: https://ecommerce-react-five-gamma.vercel.app/products
+
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CartProvider from './routing/context/CartContext'
