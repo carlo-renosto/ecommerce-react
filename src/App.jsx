@@ -6,6 +6,7 @@ import Navbar from "./components/NavBar/NavBar"
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import CartContainer from './components/CartContainer/CartContainer'
+import CartCheckoutForm from './components/CartCheckoutForm/CartCheckoutForm'
 import PageNotFound from './components/PageNotFound/PageNotFound'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/products/:cid" element={<ItemListContainer/>}/>
           <Route path="/product/:pid" element={<ItemDetailContainer/>}/>
           <Route path="/cart" element={<CartContainer/>}/>
+          <Route path="/cart/checkout-form" element={<CartCheckoutForm/>}/>
           <Route path="*" element={<PageNotFound/>}/>
         </Routes>
       </BrowserRouter>

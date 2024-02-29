@@ -1,32 +1,15 @@
 import styles from "./CartContainer.module.scss"
 import CartItem from "../Cart/CartItem"
+import { Link } from "react-router-dom"
 import { useCartContext } from "../../routing/context/CartContext"
-import { db } from '../../config/config'
-import { collection, addDoc } from "firebase/firestore";
 
 const CartContainer = () => {
-    const { getCart, getCartPriceTotal, deleteCartItem, clearCart, buyCart } = useCartContext();
+    const { getCart, getCartPriceTotal, deleteCartItem, clearCart } = useCartContext();
     const cart = getCart();
     const total = getCartPriceTotal();
 
     const onClear = () => {
         clearCart();
-    }
-
-    const onBuy = async() => {
-        const order = {
-            products: cart.map((product) => ({
-                id: product.id,
-                price: product.price,
-                quantity: product.quantity,
-                subtotal: product.price * product.quantity,
-            })),
-            total: total
-        }
-        
-        const orderId =  await buyCart(order);
-
-        swal({title: "Compra exitosa", text: `ID orden: ${orderId} \n Precio total: $${total}`, icon: "success"});
     }
 
     return cart.length > 0 ? (
@@ -42,7 +25,7 @@ const CartContainer = () => {
             <h3 style={{marginLeft: "5px"}}>Total: ${total}</h3>
 
             <div className={styles.item_center}>
-                <button onClick={() => onBuy()}>Comprar</button>
+                <Link to="/cart/checkout-form"><button>Comprar</button></Link>
             </div>
         </div>
     ) :
