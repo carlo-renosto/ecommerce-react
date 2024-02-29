@@ -29,7 +29,7 @@ const CartProvider = ({children}) => {
     }
 
     const addCartItem = (item, quantity) => {
-        const itemCollection = collection(db, "products")
+        const itemCollection = collection(db, "products");
         const itemRef = doc(itemCollection, item.id);
         item.stock -= quantity;
         updateDoc(itemRef, item);
@@ -45,7 +45,12 @@ const CartProvider = ({children}) => {
         setCartItemsTotal(cartItemsTotal + quantity);
     }
 
-    const contextValue = {getCart, getCartItemsTotal, getCartPriceTotal, addCartItem};
+    const buyCart = () => {
+        setCart([]);
+        setCartItemsTotal(0);
+    }
+
+    const contextValue = {getCart, getCartItemsTotal, getCartPriceTotal, addCartItem, buyCart};
     return <Provider value={contextValue}>{children}</Provider>
 }
 
