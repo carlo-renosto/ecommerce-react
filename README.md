@@ -3,6 +3,8 @@
 
 Aplicación web frontend hecha con React que utiliza Firestore como base de datos.
 
+Link para probar la aplicación: https://ecommerce-react-five-gamma.vercel.app/products
+
 ## Principales componentes
 
 ## NavBar
