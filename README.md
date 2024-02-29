@@ -1,7 +1,7 @@
 
 # Ecommerce React
 
-## Aplicación web frontend hecha con React que utiliza Firestore como base de datos.
+Aplicación web frontend hecha con React que utiliza Firestore como base de datos.
 
 ## Principales componentes
 
