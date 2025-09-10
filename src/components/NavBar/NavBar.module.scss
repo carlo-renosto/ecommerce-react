@@ -1,11 +1,13 @@
 
 .navbar {
   display: flex;
-  background-color: #00C5FF;
+  background-color: var(--hd-color);
   height: fit-content;
   overflow: hidden;
+  border: 1px solid;
+  border-color: var(--hd-border-color);
+  border-radius: 5px;
   position: relative;
-  color: white;
 }
   
 .links {

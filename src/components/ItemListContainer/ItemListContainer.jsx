@@ -21,7 +21,6 @@ const ItemListContainer = () => {
           id: doc.id,
           ...doc.data()
         }));
-
         setItems(products);
         setLoading(false);
       });

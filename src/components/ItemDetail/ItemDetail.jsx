@@ -2,8 +2,9 @@ import { useState } from "react"
 import swal from "sweetalert"
 import styles from "./ItemDetail.module.scss"
 import { Link } from "react-router-dom"
-import ItemCount from "../ItemCount/ItemCount"
+import ItemAdd from "../ItemAdd/ItemAdd"
 import { useCartContext } from "../../routing/context/CartContext"
+import ItemBuy from "../ItemBuy/ItemBuy"
 
 const ItemDetail = ({item}) => {
     const [itemCountVisible, setItemCountVisible] = useState(true);
@@ -22,16 +23,30 @@ const ItemDetail = ({item}) => {
         }
     }
 
+    const onBuy = (count) => {
+        // TODO
+    }
+
     return (
         <div className={styles.item}>
-            <div>
-                <p className={styles.item_center}>{title}</p>
-                <p className={styles.item_center}>{description}</p>
+            <div className={styles.item_div_img}>
                 <img className={styles.item_img} src={image} alt="product"/>
-                <p className={styles.item_center}>${price}</p>
-                <p className={styles.item_center}>Stock: {stock} unidades</p>
-                {itemCountVisible && <ItemCount onAdd={onAdd}/>}
-                {!itemCountVisible && <Link to="/cart"><div className={styles.item_center}><button>Ir al carrito</button></div></Link>}
+            </div>
+            <div className={styles.item_detail}>
+                <h1>{title}</h1>
+                <h2>${price}</h2>
+                <p>{description}</p>
+                <div className={styles.item_options}>
+                    {itemCountVisible && (
+                        <div>
+                            <ItemBuy onBuy={onBuy} itemStock={stock}/>
+                            <ItemAdd onAdd={onAdd} itemStock={stock}/>
+                        </div>
+                    )}
+                    {!itemCountVisible && (
+                        <Link to="/cart"><div className={styles.item_center}><button>Ir al carrito</button></div></Link>
+                    )}
+                </div>
             </div>
         </div>
     )
