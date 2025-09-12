@@ -1,4 +1,19 @@
 
 .logo {
-    width: 200px;
+    width: 40%;
+}
+.logo:hover {
+  border: 0px;
+}
+
+@media (max-width: 767px) {
+    .logo {
+        width: 25%;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo {
+        width: 40%;
+    }
 }

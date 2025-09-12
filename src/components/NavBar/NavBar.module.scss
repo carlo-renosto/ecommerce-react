@@ -1,29 +1,31 @@
 
 .navbar {
-  display: flex;
-  background-color: var(--hd-color);
+  width: 100%;
   height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   border: 1px solid;
   border-color: var(--hd-border-color);
   border-radius: 5px;
+  background-color: var(--hd-color);
   position: relative;
 }
-  
-.links {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+
+.navbar_logo {
+  width: fit-content;
+  margin-right: auto;
 }
 
-.link {
-  text-transform: capitalize;
+@media (max-width: 767px) {
+    .navbar {
+        padding-bottom: 0.5rem;
+    }
 }
 
-.link_decoration {
-  text-decoration: none;
-  color: inherit;
+@media (min-width: 768px) {
+    .navbar {
+        padding-bottom: 0.3rem;
+    }
 }
-  
-  

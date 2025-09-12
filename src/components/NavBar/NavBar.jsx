@@ -16,14 +16,10 @@ const Navbar = () => {
 
   return (
     <div className={styles.navbar}>
-      <Link to='/'>
-        <Logo />
-      </Link>
-      <div className={styles.links}>
-        <Link to='/products' className={styles.link_decoration}>All products</Link>
-        {categories.map((category, index) => (
-          <Link to={`/products/${category}`} key={index} className={`${styles.link} ${styles.link_decoration}`}>{category}</Link>
-        ))}
+      <div className={styles.navbar_logo}>
+        <Link to='/'>
+          <Logo />
+        </Link>
       </div>
       <CartWidget/>
     </div>

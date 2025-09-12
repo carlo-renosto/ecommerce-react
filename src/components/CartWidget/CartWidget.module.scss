@@ -1,21 +1,29 @@
 
 .cart_widget_container {
     display: flex;
-}
-
-.cart_widget {
-    margin-top: 40px;
-    margin-right: 5px;
-    width: 50px;
-    max-height: 50px;
-}
-
-.cart_amount {
-    margin-top: 60px;
-    margin-right: 15px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
 }
 
 .link_decoration {
     text-decoration: none;
     color: inherit;
+}
+.link_decoration:hover {
+    color: inherit;
+}
+
+@media (max-width: 767px) {
+    .cart_widget {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cart_widget {
+        width: 50px;
+        height: 50px;
+    }
 }
