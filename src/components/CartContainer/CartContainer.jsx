@@ -1,5 +1,5 @@
 import styles from "./CartContainer.module.scss"
-import CartItem from "../Cart/CartItem"
+import CartItem from "../CartItem/CartItem"
 import { Link } from "react-router-dom"
 import { useCartContext } from "../../routing/context/CartContext"
 
@@ -14,23 +14,17 @@ const CartContainer = () => {
 
     return cart.length > 0 ? (
         <div className={styles.cart}>
-            <h1 className= {styles.item_center}>Carrito</h1>
-
-            <div className={styles.item_center}>
-                <button onClick={() => onClear()}>Vaciar</button>
+            <div className={styles.cart_header}>
+                <h1 className={styles.cart_title}>Carrito</h1>
+                <button className={styles.cart_clear} onClick={() => onClear()}>Vaciar</button>
             </div>
-            
             <CartItem cart={cart} deleteCartItem={deleteCartItem}/>
-
-            <h3 style={{marginLeft: "5px"}}>Total: ${total}</h3>
-
-            <div className={styles.item_center}>
-                <Link to="/cart/checkout-form"><button>Comprar</button></Link>
-            </div>
+            <h3 className={styles.cart_total}>Total: ${total}</h3>
+            <Link to="/cart/checkout-form"><button>Comprar</button></Link>
         </div>
     ) :
     (
-        <div className={styles.item_center}>
+        <div className={styles.cart_empty}>
             <h1>Carrito vacío</h1>
         </div>
     )
