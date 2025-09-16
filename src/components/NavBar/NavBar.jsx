@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getCategoriesAsync } from '../../utils/mock'
 import CartWidget from '../CartWidget/CartWidget'
+import Searcher from '../Searcher/Searcher'
 
 const Navbar = () => {
   const [categories, setCategories] = useState([])
@@ -20,6 +21,9 @@ const Navbar = () => {
         <Link to='/'>
           <Logo />
         </Link>
+      </div>
+      <div className={styles.navbar_searcher}>
+        <Searcher />
       </div>
       <CartWidget/>
     </div>

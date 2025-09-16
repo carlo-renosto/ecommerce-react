@@ -7,8 +7,8 @@ import Home from './pages/Home/Home'
 import Navbar from "./components/NavBar/NavBar"
 import PageNotFound from './components/PageNotFound/PageNotFound'
 import Products from './pages/Products/Products'
-import ProductById from './pages/Products/ProductById/ProductById'
 import ProductByCategory from './pages/Products/ProductByCategory/ProductByCategory'
+import ProductById from './pages/Products/ProductById/ProductById'
 import Cart from './pages/Cart/Cart'
 import CartCheckout from './pages/Cart/CartCheckout/CartCheckout'
 

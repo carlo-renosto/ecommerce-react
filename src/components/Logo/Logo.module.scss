@@ -1,19 +1,19 @@
 
-.logo {
-    width: 40%;
-}
 .logo:hover {
-  border: 0px;
+    border: none;
+}
+.logo:focus {
+  outline: none;
 }
 
 @media (max-width: 767px) {
     .logo {
-        width: 25%;
+        width: 100px;
     }
 }
 
 @media (min-width: 768px) {
     .logo {
-        width: 40%;
+        width: 200px;
     }
 }

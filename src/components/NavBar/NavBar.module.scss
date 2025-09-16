@@ -3,9 +3,9 @@
   width: 100%;
   height: fit-content;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   border: 1px solid;
   border-color: var(--hd-border-color);
   border-radius: 5px;
@@ -15,7 +15,12 @@
 
 .navbar_logo {
   width: fit-content;
-  margin-right: auto;
+  justify-content: flex-start;
+}
+
+.navbar_searcher {
+  margin: 0 auto;
+  justify-content: center;
 }
 
 @media (max-width: 767px) {
