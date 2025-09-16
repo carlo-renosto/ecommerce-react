@@ -34,8 +34,10 @@ const Searcher = () => {
 
     return (
         <form className={styles.searcher_div} onSubmit={onSearch}>
-            <SearcherText text={text} setText={setText} />
-            <SearcherDropdown setCategory={setCategory}/>
+            <div className={styles.searcher_input}>
+                <SearcherText text={text} setText={setText} />
+                <SearcherDropdown setCategory={setCategory} />
+            </div>
             <SearcherButton />
         </form>
     )

@@ -4,4 +4,26 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .searcher_input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .searcher_input {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
 }

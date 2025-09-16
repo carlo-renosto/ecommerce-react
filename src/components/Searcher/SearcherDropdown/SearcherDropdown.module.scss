@@ -1,12 +1,7 @@
 
-@media (max-width: 767px) {
-    .searcherdropdown {
-        height: 30px;
-    }
+.searcherdropdown {
+    height: clamp(4vh, 5vw, 6vh);
+    box-sizing: border-box;
+    margin: 0;
 }
 
-@media (min-width: 768px) {
-    .searcherdropdown {
-        height: 50px;
-    }
-}
