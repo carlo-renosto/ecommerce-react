@@ -15,17 +15,17 @@
 
 .cart_header {
     width: 100%;
+    position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-between; 
-}
-
-.cart_title {
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center; 
 }
 
 .cart_clear {
-    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
     border: none;
     background-color: var(--bg-color);
 }

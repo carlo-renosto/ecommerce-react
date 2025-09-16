@@ -16,7 +16,7 @@ const CartItem = ({cart, deleteCartItem}) => {
                     <div className={styles.item_div_detail}>
                         <div className={styles.item_div_detail_header}>
                              <Link to={`/product/${id}`}>
-                                <p className={`${styles.item_title}`}>{title}</p>
+                                <p className={styles.item_title}>{title}</p>
                             </Link>
                             <Link to="/cart">
                                 <button className={styles.item_delete} onClick={() => onDeleteProduct(id, quantity)}>
