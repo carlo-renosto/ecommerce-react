@@ -6,7 +6,7 @@ const SearcherText = ({ text, setText }) => {
     }
 
     return (
-        <input className={styles.searchertext} type="text" value={text} onChange={onChangeHandler} />
+        <input className={styles.searchertext} type="text" value={text} placeholder="Buscar..." onChange={onChangeHandler} />
     )
 }
 

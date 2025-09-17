@@ -5,18 +5,21 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 1rem;
     width: 50%;
-    border: 1px solid #ccc;
+    border: 2px solid;
+    border-color: var(--border-color);
 }
 
 input {
-    margin-top: 5px;
+    margin-top: 0.5rem;
+    border: 1px solid;
+    border-color: var(--border-color);
 }
 
 button {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .item_center {
