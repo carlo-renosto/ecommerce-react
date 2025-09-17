@@ -9,7 +9,9 @@ function CartWidget() {
     return (
         <Link to="/cart" className={styles.link_decoration}>
             <div className={styles.cart_widget_container}>
-                <img className={styles.cart_widget} src={cartwidget}></img>
+                <span className="material-symbols-outlined">
+                    shopping_cart
+                </span>
                 <p className={styles.cart_amount}>{getCartItemsTotal()}</p>
             </div>
         </Link>

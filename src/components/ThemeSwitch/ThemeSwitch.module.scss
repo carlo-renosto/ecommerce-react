@@ -1,0 +1,17 @@
+
+.themeswitch {
+    width: fit-content;
+    margin-right: 0.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer
+}
+
+.themeswitch button:hover {
+  border-color: none;
+}
+.themeswitch:focus,
+.themeswitch:focus-visible {
+  outline: none;
+}
