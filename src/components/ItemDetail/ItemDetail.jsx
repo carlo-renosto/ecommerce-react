@@ -39,7 +39,6 @@ const ItemDetail = ({item}) => {
                 <div className={styles.item_options}>
                     {itemCountVisible && (
                         <div>
-                            <ItemBuy onBuy={onBuy} itemStock={stock}/>
                             <ItemAdd onAdd={onAdd} itemStock={stock}/>
                         </div>
                     )}

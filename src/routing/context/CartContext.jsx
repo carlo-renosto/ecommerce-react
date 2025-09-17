@@ -1,78 +1,94 @@
-import { createContext, useContext, useState } from "react"
-import { db } from '../../config/config'
-import { collection, doc, addDoc, updateDoc } from "firebase/firestore";
+import { createContext, useContext, useState, useEffect, useRef } from "react"
+import { db } from "../../config/config"
+import { collection, doc, addDoc, updateDoc } from "firebase/firestore"
 
-const cartContext = createContext();
+const cartContext = createContext()
 
-export const { Provider } = cartContext;
+const CartProvider = ({ children }) => {
+    const [cart, setCart] = useState(() => {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+    });
+    const [cartItemsTotal, setCartItemsTotal] = useState(0)
 
-const CartProvider = ({children}) => {
-    const [cart, setCart] = useState([]);
-    const [cartItemsTotal, setCartItemsTotal] = useState(0);
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem("cart")) || []
+        setCart(savedCart)
+        setCartItemsTotal(savedCart.reduce((sum, item) => sum + item.quantity, 0))
+    }, [])
 
-    const getCart = () => {
-        return cart;
-    }
+    const firstRender = useRef(true);
 
-    const getCartItemsTotal = () => {
-        return cartItemsTotal;
-    }
-
-    const getCartPriceTotal = () => {
-        let total = 0;
-        cart.forEach(item => {
-            let subtotal = item.price * item.quantity;
-            total += subtotal;
-        });
-
-        return total;
-    }
-
-    const addCartItem = (item, quantity) => {
-        const index = cart.findIndex(itm => itm.id === item.id);
-        if(index !== -1) {
-            cart[index].quantity += quantity;
+    useEffect(() => {
+        if(firstRender.current) {
+            firstRender.current = false;
             return;
         }
+        localStorage.setItem("cart", JSON.stringify(cart))
+    }, [cart])
 
-        item.quantity = quantity;
-        setCart([...cart, item]);
-        setCartItemsTotal(cartItemsTotal + quantity);
+    const getCart = () => cart
+    const getCartItemsTotal = () => cartItemsTotal
+    const getCartPriceTotal = () =>
+        cart.reduce((total, item) => total + item.price * item.quantity, 0)
+
+    const addCartItem = (item, quantity) => {
+        const index = cart.findIndex((itm) => itm.id === item.id)
+        let updatedCart
+
+        if (index !== -1) {
+        updatedCart = [...cart]
+        updatedCart[index].quantity += quantity
+        } else {
+        updatedCart = [...cart, { ...item, quantity }]
+        }
+
+        setCart(updatedCart)
+        setCartItemsTotal(updatedCart.reduce((sum, itm) => sum + itm.quantity, 0))
     }
 
     const deleteCartItem = (item) => {
-        setCart(cart.filter(itm => itm.id !== item.id));
-        setCartItemsTotal(cartItemsTotal - item.quantity);
+        const updatedCart = cart.filter((itm) => itm.id !== item.id)
+        setCart(updatedCart)
+        setCartItemsTotal(updatedCart.reduce((sum, itm) => sum + itm.quantity, 0))
     }
 
     const clearCart = () => {
-        setCart([]);
-        setCartItemsTotal(0);
+        setCart([])
+        setCartItemsTotal(0)
     }
 
-    const buyCart = async(order) => {
-        const orderRef = await addDoc(collection(db, "orders"), order);
+    const buyCart = async (order) => {
+        const orderRef = await addDoc(collection(db, "orders"), order)
 
-        const itemCollection = collection(db, "products");
+        const itemCollection = collection(db, "products")
         cart.forEach((item) => {
-            item.stock -= item.quantity;
+        item.stock -= item.quantity
+        const itemRef = doc(itemCollection, item.id)
+        updateDoc(itemRef, item)
+        })
 
-            const itemRef = doc(itemCollection, item.id);
-            updateDoc(itemRef, item);
-        });
-
-        setCart([]);
-        setCartItemsTotal(0);
-
-        return orderRef.id;
+        clearCart()
+        return orderRef.id
     }
 
-    const contextValue = {getCart, getCartItemsTotal, getCartPriceTotal, addCartItem, deleteCartItem, clearCart, buyCart};
-    return <Provider value={contextValue}>{children}</Provider>
+    const contextValue = {
+        getCart,
+        getCartItemsTotal,
+        getCartPriceTotal,
+        addCartItem,
+        deleteCartItem,
+        clearCart,
+        buyCart,
+    }
+
+    return (
+        <cartContext.Provider value={contextValue}>
+        {children}
+        </cartContext.Provider>
+    )
 }
 
-export const useCartContext = () => {
-    return useContext(cartContext);
-}
+const useCartContext  = () => useContext(cartContext);
+export { useCartContext  };
 
-export default CartProvider;
+export default CartProvider

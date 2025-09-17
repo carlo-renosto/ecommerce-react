@@ -20,7 +20,7 @@ const CartItem = ({cart, deleteCartItem}) => {
                             </Link>
                             <Link to="/cart">
                                 <button className={styles.item_delete} onClick={() => onDeleteProduct(id, quantity)}>
-                                    <span class="material-symbols-outlined">
+                                    <span className="material-symbols-outlined">
                                         delete
                                     </span>
                                 </button>
