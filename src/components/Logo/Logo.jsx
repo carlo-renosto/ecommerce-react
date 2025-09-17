@@ -1,5 +1,5 @@
-import logo from "../../assets/ecommercelogo.png"
-import logoMobile from "../../assets/ecommercelogomobile.png"
+import logo from "../../assets/ecommercelogo.webp"
+import logoMobile from "../../assets/ecommercelogomobile.webp"
 import styles from "./Logo.module.scss"
 
 const Logo = () => {

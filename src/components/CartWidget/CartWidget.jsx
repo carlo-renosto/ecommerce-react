@@ -1,6 +1,5 @@
 import styles from "./CartWidget.module.scss"
 import { Link } from 'react-router-dom'
-import cartwidget from "../../assets/cartwhite.png"
 import { useCartContext } from "../../routing/context/CartContext"
 
 function CartWidget() { 
